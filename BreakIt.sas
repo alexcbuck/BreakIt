@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 /*--------------------------------------------------------------------------------------*
 
 *******************************************************
 ***  Copyright Rho, Inc. 2016, all rights reserved  ***
 *******************************************************
 
-MACRO:      AxisRange.sas
+MACRO:      BreakIt.sas
 
 PURPOSE:    Determine if RANGES is appropriate given the data.
             Generate VALUES or RANGES text for use in YAXIS/XAXIS statements of SGPLOT.
@@ -45,7 +44,8 @@ EXAMPLE1:    %BreakIt (Data=work.adlb,
 EXAMPLE2:    %BreakIt (Data=work.adlb,
                        Var=aval,
                        ChkPct=0.35,
-                       MargPct=0.15)
+                       MargPct=0.15,
+                       MaxGap=1)
 
              proc sgplot data=work.adlb;
                   scatter x=time y=aval/group=trt01a;
