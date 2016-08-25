@@ -1,21 +1,28 @@
-libname testdata "H:\My Documents\Presentations\PharmaSUG 2016\Data";
+libname testdata H:\My Documents\Presentations\Breakit\Data";
 
-%include "H:\My Documents\Presentations\PharmaSUG 2016\breakit.sas";
+%let pgmdir = H:\My Documents\Presentations\Breakit\;
 
+option 
+   sasautos=("&pgmdir" sasautos)
+   mprint
+   ;
 
-%breakit(inputdat=testdata.norm_trtdiff,
-         inval=value,
-         gapcheck=2,
-         marg=5,
-         diffcheck=2,
-         obscheck=100);
+libname testdata "&pgmdir.\Data";
+ods listing
+   gpath = "&pgmdir"
+   ;
 
+ods graphics / 
+   reset=all
+   ;
 
-ods rtf file='H:\My Documents\Presentations\PharmaSUG 2016\Figures\Norm_trtdiff_final_test.rtf'; 
+%Breakit(data=testdata.norm_trtdiff_2gap,var=value,chkpct=0.25,marpct=0.10);
 
-proc sgplot data=indat;
+ods rtf file='H:\My Documents\Presentations\Breakit\Figures\Norm_trtdiff_2gap.rtf'; 
+
+proc sgplot data=testdata.norm_trtdiff_2gap;
    scatter x=time y=value/group=trtn ;
-   yaxis ranges=(&ovmin.-&lowbreak. &upbreak.-&ovmax.);
+   yaxis &FigText.;
 run;
 
 ods rtf close;
