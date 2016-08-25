@@ -1,5 +1,3 @@
-libname testdata H:\My Documents\Presentations\Breakit\Data";
-
 %let pgmdir = H:\My Documents\Presentations\Breakit\;
 
 option 
